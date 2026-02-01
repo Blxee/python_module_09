@@ -56,7 +56,7 @@ ID: {self.contact_id}
 Type: {self.contact_type.value}
 Location: {self.location}
 Signal: {self.signal_strength}/10
-Duration: {self.signal_strength} minutes
+Duration: {self.duration_minutes} minutes
 Witnesses: {self.witness_count}
 Message: '{self.message_received}'"""
 
