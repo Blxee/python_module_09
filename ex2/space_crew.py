@@ -4,6 +4,7 @@ from enum import Enum
 from pydantic import BaseModel, Field, model_validator, ValidationError
 from datetime import datetime
 from sys import stderr
+from typing import Any
 
 
 class Rank(Enum):
@@ -106,32 +107,32 @@ def main() -> None:
     """Define main entry of the program."""
     print("Space Mission Crew Validation")
 
-    sarah: CrewMember = CrewMember(
-        member_id="CREW_001",
-        name="Sarah Connor",
-        rank=Rank.COMMANDER,
-        age=32,
-        specialization="Mission Command",
-        years_experience=12,
-    )
-    john: CrewMember = CrewMember(
-        member_id="CREW_002",
-        name="John Smith",
-        rank=Rank.LIEUTENANT,
-        age=26,
-        specialization="Navigation",
-        years_experience=3,
-    )
-    alice: CrewMember = CrewMember(
-        member_id="CREW_003",
-        name="Alice Johnson ",
-        rank=Rank.OFFICER,
-        age=27,
-        specialization="Engineering",
-        years_experience=6,
-    )
+    sarah: dict[str, Any] = {
+        "member_id": "CREW_001",
+        "name": "Sarah Connor",
+        "rank": Rank.COMMANDER,
+        "age": 32,
+        "specialization": "Mission Command",
+        "years_experience": 12,
+    }
+    john: dict[str, Any] = {
+        "member_id": "CREW_002",
+        "name": "John Smith",
+        "rank": Rank.LIEUTENANT,
+        "age": 26,
+        "specialization": "Navigation",
+        "years_experience": 3,
+    }
+    alice: dict[str, Any] = {
+        "member_id": "CREW_003",
+        "name": "Alice Johnson ",
+        "rank": Rank.OFFICER,
+        "age": 27,
+        "specialization": "Engineering",
+        "years_experience": 6,
+    }
 
-    crew: list[CrewMember] = [sarah, john, alice]
+    crew: list[dict[str, Any]] = [sarah, john, alice]
 
     create_space_mission(
         mission_id="M2024_MARS",
@@ -143,7 +144,7 @@ def main() -> None:
         budget_millions=2500.0,
     )
 
-    sarah.rank = Rank.CADET
+    sarah["rank"] = Rank.CADET
 
     create_space_mission(
         mission_id="M2024_MARS",
